@@ -3,6 +3,8 @@ package com.manikandanmuthuvs.game.chess.test.customer;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
 
 import com.manikandanmuthuvs.game.chess.contract.usecase.ChessGameUsecaseContract;
@@ -34,5 +36,13 @@ public class ChessGameUsecaseTest {
 		assertThat(actualMoveAbleSpots,is(expectedMoveableSpot));
 	}
 	
+	@Test
+	public void KING_Wants_To_Findout_All_Possible_Moveable_Spots_From_His_Current_Spot_In_TheEmptyChessBoard() {
+		String[] expectedMoveableSpots = new String[] {"D6", "E6", "E5","E4", "D4", "C4", "C5", "C6"};
+	
+		String[] actualMoveAbleSpots = chessGameUsecaseContract.findAllMoveableSpotsOf(chessBoard,"KING","D5");
+		
+		assertThat(actualMoveAbleSpots,is(expectedMoveableSpots));
+	}
 	
 }
