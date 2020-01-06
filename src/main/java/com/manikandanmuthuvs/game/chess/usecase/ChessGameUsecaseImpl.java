@@ -7,6 +7,7 @@ import com.manikandanmuthuvs.game.chess.contract.usecase.ChessGameUsecaseContrac
 import com.manikandanmuthuvs.game.chess.contract.usecase.PieceMoveVerticalUpContract;
 import com.manikandanmuthuvs.game.chess.domain.ChessBoard;
 import com.manikandanmuthuvs.game.chess.domain.King;
+import com.manikandanmuthuvs.game.chess.domain.Queen;
 import com.manikandanmuthuvs.game.chess.domain.Spot;
 
 import lombok.Builder;
@@ -24,7 +25,8 @@ import lombok.Data;
 public class ChessGameUsecaseImpl implements ChessGameUsecaseContract {
 	PieceMoveVerticalUpContract pawn;
 	King king;
-	
+	Queen queen;
+
  	public ChessBoard createChessBoard(int ROW_MAX_LENGTH, int COLUMN_MAX_LENGTH,		
 		String[] rowName, String[] columeName) {
 		
@@ -65,6 +67,7 @@ public class ChessGameUsecaseImpl implements ChessGameUsecaseContract {
 	public String[] findAllMoveableSpotsOf(ChessBoard chessBoard, String piece, String currentSpotName) {
 		ArrayList<String> moveAbleSpotNames = new ArrayList<String>();
 		Spot fromCurrentSpot = findCurrentSpotCoordination(chessBoard,piece,currentSpotName);
+
 		if(piece.equals("PAWN")) {
 			moveAbleSpotNames.add(pawn.moveableSpotInVerticalUp(chessBoard,fromCurrentSpot));
 		}
@@ -77,6 +80,16 @@ public class ChessGameUsecaseImpl implements ChessGameUsecaseContract {
 			moveAbleSpotNames.add(king.moveableSpotInDiagonalDownLeft(chessBoard, fromCurrentSpot));
 			moveAbleSpotNames.add(king.moveableSpotInHorizontalLeft(chessBoard, fromCurrentSpot));
 			moveAbleSpotNames.add(king.moveableSpotInDiagonalUpLeft(chessBoard, fromCurrentSpot));
+		}
+		else if(piece.equals("QUEEN")) {
+			moveAbleSpotNames.add(queen.moveableSpotsInVerticalUp(chessBoard, fromCurrentSpot));
+			moveAbleSpotNames.add(queen.moveableSpotsInDiagonalUpRight(chessBoard, fromCurrentSpot));
+			moveAbleSpotNames.add(queen.moveableSpotsInHorizontalRight(chessBoard, fromCurrentSpot));
+			moveAbleSpotNames.add(queen.moveableSpotsInDiagonalDownRight(chessBoard, fromCurrentSpot));
+			moveAbleSpotNames.add(queen.moveableSpotsInVerticalDown(chessBoard, fromCurrentSpot));
+			moveAbleSpotNames.add(queen.moveableSpotsInDiagonalDownLeft(chessBoard, fromCurrentSpot));
+			moveAbleSpotNames.add(queen.moveableSpotsInHorizontalLeft(chessBoard, fromCurrentSpot));
+			moveAbleSpotNames.add(queen.moveableSpotsInDiagonalUpLeft(chessBoard, fromCurrentSpot));
 		}
 	
 		String[] actualMoveAbleSpots = new String[moveAbleSpotNames.size()];		
