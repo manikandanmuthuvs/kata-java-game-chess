@@ -53,23 +53,6 @@ public class ChessGameUsecaseImpl implements ChessGameUsecaseContract {
 		return chessBoard;		
 	}
 
- 	private Spot findCurrentSpotCoordination(ChessBoard chessBoard, String piece, String spotName) {
-		Spot currentSpotCoordination = null;
-		
-		String[][] chessBoardsSpots = chessBoard.getSpots();		
-		int rowLengthOfBoard = chessBoard.getSpots()[0].length;
-		int columnLengthOfBoard = chessBoard.getSpots()[1].length;
-		
-		for (int row = 0; row < rowLengthOfBoard ; row++) {			
-			for (int column = 0; column < columnLengthOfBoard; column++) {
-				if(chessBoardsSpots[row][column].equals(spotName )) {
-					currentSpotCoordination = new Spot(row,column);				
-				}
-			}
-		}
-		return currentSpotCoordination;
-	}
-	
 	public String[] findAllMoveableSpotsOf(ChessBoard chessBoard, String piece, String currentSpotName) {
 		ArrayList<String> moveAbleSpotNames = new ArrayList<String>();
 		Spot fromCurrentSpot = findCurrentSpotCoordination(chessBoard,piece,currentSpotName);
@@ -124,4 +107,22 @@ public class ChessGameUsecaseImpl implements ChessGameUsecaseContract {
 		actualMoveAbleSpots = moveAbleSpotNames.toArray(actualMoveAbleSpots);
 		return actualMoveAbleSpots;
 	}
+
+ 	private Spot findCurrentSpotCoordination(ChessBoard chessBoard, String piece, String spotName) {
+		Spot currentSpotCoordination = null;
+		
+		String[][] chessBoardsSpots = chessBoard.getSpots();		
+		int rowLengthOfBoard = chessBoard.getSpots()[0].length;
+		int columnLengthOfBoard = chessBoard.getSpots()[1].length;
+		
+		for (int row = 0; row < rowLengthOfBoard ; row++) {			
+			for (int column = 0; column < columnLengthOfBoard; column++) {
+				if(chessBoardsSpots[row][column].equals(spotName )) {
+					currentSpotCoordination = new Spot(row,column);				
+				}
+			}
+		}
+		return currentSpotCoordination;
+	}
+	
 }
