@@ -4,12 +4,14 @@ import com.manikandanmuthuvs.game.chess.contract.usecase.PieceMoveVerticalUpCont
 import com.manikandanmuthuvs.game.chess.domain.King;
 import com.manikandanmuthuvs.game.chess.domain.Pawn;
 import com.manikandanmuthuvs.game.chess.domain.Queen;
+import com.manikandanmuthuvs.game.chess.domain.Rook;
 import com.manikandanmuthuvs.game.chess.usecase.ChessGameUsecaseImpl;
 
 public class ChessGameTestUtils {
 	PieceMoveVerticalUpContract pawn = new Pawn();
 	King king = new King();
 	Queen queen = new Queen();
+	Rook rook = new Rook();
 	
 	public ChessGameTestUtils() {		
 	}
@@ -19,6 +21,7 @@ public class ChessGameTestUtils {
 				.pawn(pawn)
 				.king(king)
 				.queen(queen)
+				.rook(rook)
 				.build();
 		return chessGameUsecaseImpl;
 	}

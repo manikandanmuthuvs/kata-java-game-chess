@@ -53,4 +53,13 @@ public class ChessGameUsecaseTest {
 		
 		assertThat(actualMoveAbleSpots,is(expectedMoveableSpots));
 	}
+	
+	@Test
+	public void ROOK_Wants_To_Findout_All_Possible_Moveable_Spots_From_Its_Current_Spot_In_TheEmptyChessBoard() {
+		String[] expectedMoveableSpots = new String[] {"E4E5E6E7E8", "F3G3H3", "E2E1", "D3C3B3A3"};
+		
+		String[] actualMoveAbleSpots = chessGameUsecaseContract.findAllMoveableSpotsOf(chessBoard,"ROOK","E3");
+				
+		assertThat(actualMoveAbleSpots,is(expectedMoveableSpots));
+	}
 }

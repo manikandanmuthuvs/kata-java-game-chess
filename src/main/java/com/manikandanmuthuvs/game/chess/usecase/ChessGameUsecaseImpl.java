@@ -8,6 +8,7 @@ import com.manikandanmuthuvs.game.chess.contract.usecase.PieceMoveVerticalUpCont
 import com.manikandanmuthuvs.game.chess.domain.ChessBoard;
 import com.manikandanmuthuvs.game.chess.domain.King;
 import com.manikandanmuthuvs.game.chess.domain.Queen;
+import com.manikandanmuthuvs.game.chess.domain.Rook;
 import com.manikandanmuthuvs.game.chess.domain.Spot;
 
 import lombok.Builder;
@@ -26,6 +27,7 @@ public class ChessGameUsecaseImpl implements ChessGameUsecaseContract {
 	PieceMoveVerticalUpContract pawn;
 	King king;
 	Queen queen;
+	Rook rook;
 
  	public ChessBoard createChessBoard(int ROW_MAX_LENGTH, int COLUMN_MAX_LENGTH,		
 		String[] rowName, String[] columeName) {
@@ -91,7 +93,12 @@ public class ChessGameUsecaseImpl implements ChessGameUsecaseContract {
 			moveAbleSpotNames.add(queen.moveableSpotsInHorizontalLeft(chessBoard, fromCurrentSpot));
 			moveAbleSpotNames.add(queen.moveableSpotsInDiagonalUpLeft(chessBoard, fromCurrentSpot));
 		}
-	
+		else if(piece.equals("ROOK")) {
+			moveAbleSpotNames.add(rook.moveVerticalUp(chessBoard,fromCurrentSpot));
+			moveAbleSpotNames.add(rook.moveHorizontalRight(chessBoard, fromCurrentSpot));
+			moveAbleSpotNames.add(rook.moveVerticalDown(chessBoard,fromCurrentSpot));
+			moveAbleSpotNames.add(rook.moveHorizontalLeft(chessBoard,fromCurrentSpot));
+		}		
 		String[] actualMoveAbleSpots = new String[moveAbleSpotNames.size()];		
 		actualMoveAbleSpots = moveAbleSpotNames.toArray(actualMoveAbleSpots);
 		return actualMoveAbleSpots;
