@@ -1,6 +1,7 @@
 package com.manikandanmuthuvs.game.chess.test.utils;
 
 import com.manikandanmuthuvs.game.chess.contract.usecase.PieceMoveVerticalUpContract;
+import com.manikandanmuthuvs.game.chess.domain.Bishop;
 import com.manikandanmuthuvs.game.chess.domain.Horse;
 import com.manikandanmuthuvs.game.chess.domain.King;
 import com.manikandanmuthuvs.game.chess.domain.Pawn;
@@ -14,6 +15,7 @@ public class ChessGameTestUtils {
 	Queen queen = new Queen();
 	Rook rook = new Rook();
 	Horse horse = new Horse();
+	Bishop bishop = new Bishop();
 	
 	public ChessGameTestUtils() {		
 	}
@@ -25,6 +27,7 @@ public class ChessGameTestUtils {
 				.queen(queen)
 				.rook(rook)
 				.horse(horse)
+				.bishop(bishop)
 				.build();
 		return chessGameUsecaseImpl;
 	}

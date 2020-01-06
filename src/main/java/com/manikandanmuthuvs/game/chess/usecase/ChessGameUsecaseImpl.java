@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import com.manikandanmuthuvs.game.chess.contract.usecase.ChessGameUsecaseContract;
 import com.manikandanmuthuvs.game.chess.contract.usecase.PieceMoveVerticalUpContract;
+import com.manikandanmuthuvs.game.chess.domain.Bishop;
 import com.manikandanmuthuvs.game.chess.domain.ChessBoard;
 import com.manikandanmuthuvs.game.chess.domain.Horse;
 import com.manikandanmuthuvs.game.chess.domain.King;
@@ -30,6 +31,7 @@ public class ChessGameUsecaseImpl implements ChessGameUsecaseContract {
 	Queen queen;
 	Rook rook;
 	Horse horse;
+	Bishop bishop;
 
  	public ChessBoard createChessBoard(int ROW_MAX_LENGTH, int COLUMN_MAX_LENGTH,		
 		String[] rowName, String[] columeName) {
@@ -111,7 +113,13 @@ public class ChessGameUsecaseImpl implements ChessGameUsecaseContract {
 			moveAbleSpotNames.add(horse.moveHorizontalRightAndVerticalUp(chessBoard,fromCurrentSpot));
 			moveAbleSpotNames.add(horse.moveHorizontalLeftAndVerticalUp(chessBoard,fromCurrentSpot));
 		}	
-			
+		else if(piece.equals("BISHOP")) {
+			moveAbleSpotNames.add(bishop.moveDiagonalUpRight(chessBoard,fromCurrentSpot));
+			moveAbleSpotNames.add(bishop.moveDiagonalDownRight(chessBoard, fromCurrentSpot));
+			moveAbleSpotNames.add(bishop.moveDiagonalDownLeft(chessBoard,fromCurrentSpot));
+			moveAbleSpotNames.add(bishop.moveDiagonalUpLeft(chessBoard,fromCurrentSpot));
+		}	
+	
 		String[] actualMoveAbleSpots = new String[moveAbleSpotNames.size()];		
 		actualMoveAbleSpots = moveAbleSpotNames.toArray(actualMoveAbleSpots);
 		return actualMoveAbleSpots;
