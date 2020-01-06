@@ -4,7 +4,7 @@ to run a app, run the following command on console,
 
 exec:java -Dexec.mainClass=com.manikandanmuthuvs.game.chess.cli.App
 
-Once started runing, Please give the commands as,
+Once started runing, Please give the following commands seperately,
 QUEEN D5
 KING D3
 ROOK E3
