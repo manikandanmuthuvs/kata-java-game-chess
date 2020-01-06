@@ -6,6 +6,7 @@ import java.util.UUID;
 import com.manikandanmuthuvs.game.chess.contract.usecase.ChessGameUsecaseContract;
 import com.manikandanmuthuvs.game.chess.contract.usecase.PieceMoveVerticalUpContract;
 import com.manikandanmuthuvs.game.chess.domain.ChessBoard;
+import com.manikandanmuthuvs.game.chess.domain.Horse;
 import com.manikandanmuthuvs.game.chess.domain.King;
 import com.manikandanmuthuvs.game.chess.domain.Queen;
 import com.manikandanmuthuvs.game.chess.domain.Rook;
@@ -28,6 +29,7 @@ public class ChessGameUsecaseImpl implements ChessGameUsecaseContract {
 	King king;
 	Queen queen;
 	Rook rook;
+	Horse horse;
 
  	public ChessBoard createChessBoard(int ROW_MAX_LENGTH, int COLUMN_MAX_LENGTH,		
 		String[] rowName, String[] columeName) {
@@ -98,7 +100,18 @@ public class ChessGameUsecaseImpl implements ChessGameUsecaseContract {
 			moveAbleSpotNames.add(rook.moveHorizontalRight(chessBoard, fromCurrentSpot));
 			moveAbleSpotNames.add(rook.moveVerticalDown(chessBoard,fromCurrentSpot));
 			moveAbleSpotNames.add(rook.moveHorizontalLeft(chessBoard,fromCurrentSpot));
-		}		
+		}	
+		else if(piece.equals("HORSE")) {
+			moveAbleSpotNames.add(horse.moveVerticalUpAndHorizontalRight(chessBoard,fromCurrentSpot));
+			moveAbleSpotNames.add(horse.moveVerticalUpAndHorizontalLeft(chessBoard, fromCurrentSpot));
+			moveAbleSpotNames.add(horse.moveVerticalDownAndHorizontalRight(chessBoard,fromCurrentSpot));
+			moveAbleSpotNames.add(horse.moveVerticalDownAndHorizontalLeft(chessBoard,fromCurrentSpot));
+			moveAbleSpotNames.add(horse.moveHorizontalLeftAndVerticalDown(chessBoard,fromCurrentSpot));
+			moveAbleSpotNames.add(horse.moveHorizontalRightAndVerticalDown(chessBoard, fromCurrentSpot));
+			moveAbleSpotNames.add(horse.moveHorizontalRightAndVerticalUp(chessBoard,fromCurrentSpot));
+			moveAbleSpotNames.add(horse.moveHorizontalLeftAndVerticalUp(chessBoard,fromCurrentSpot));
+		}	
+			
 		String[] actualMoveAbleSpots = new String[moveAbleSpotNames.size()];		
 		actualMoveAbleSpots = moveAbleSpotNames.toArray(actualMoveAbleSpots);
 		return actualMoveAbleSpots;
